@@ -26,7 +26,7 @@ def grok_chat(message):
                 "Content-Type": "application/json"
             },
             json={
-                "model": "grok-2-latest",
+                "model": "grok-4",
                 "messages": [
                     {"role": "system", "content": "أنت مساعد ذكي تتحدث العربية بطلاقة."},
                     {"role": "user", "content": message}
@@ -56,7 +56,7 @@ def grok_vision(image_base64, prompt="استخرج كل النص من هذه ا�
                 "Content-Type": "application/json"
             },
             json={
-                "model": "grok-2-vision-latest",
+                "model": "grok-4-vision",
                 "messages": [
                     {
                         "role": "user",
