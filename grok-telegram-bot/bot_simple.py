@@ -80,7 +80,7 @@ def grok_vision(image_base64, prompt="استخرج كل النص من هذه ا�
         else:
             return f"❌ رد غير متوقع: {str(data)[:200]}"
     except Exception as e:
-        return f"❌ خطأ: {str(e)}"
+        return f"❌ خطأ Vision: {str(e)}"
 
 
 def send_message(chat_id, text):
@@ -114,15 +114,42 @@ def get_updates(offset=None):
 def download_file(file_id):
     """تحميل ملف من تيليجرام"""
     try:
-        file_info = requests.get(f"{TELEGRAM_API}/getFile", params={"file_id": file_id}, timeout=30).json()
-        if "result" not in file_info:
+        # الحصول على معلومات الملف
+        file_resp = requests.get(f"{TELEGRAM_API}/getFile", params={"file_id": file_id}, timeout=30)
+        print(f"📥 getFile response: {file_resp.status_code}")
+
+        if file_resp.status_code != 200:
+            print(f"❌ getFile failed: {file_resp.text}")
             return None, None
+
+        file_info = file_resp.json()
+        print(f"📄 file_info: {file_info}")
+
+        if not file_info.get("ok"):
+            print(f"❌ getFile not ok: {file_info}")
+            return None, None
+
+        if "result" not in file_info:
+            print(f"❌ No result in file_info")
+            return None, None
+
         file_path = file_info["result"]["file_path"]
+        file_size = file_info["result"].get("file_size", 0)
+        print(f"📁 file_path: {file_path}, size: {file_size}")
+
+        # تحميل الملف
         file_url = f"https://api.telegram.org/file/bot{TELEGRAM_TOKEN}/{file_path}"
-        response = requests.get(file_url, timeout=60)
-        return response.content, file_path
+        response = requests.get(file_url, timeout=120)
+        print(f"📥 Download response: {response.status_code}, size: {len(response.content)}")
+
+        if response.status_code == 200:
+            return response.content, file_path
+        else:
+            print(f"❌ Download failed: {response.status_code}")
+            return None, None
+
     except Exception as e:
-        print(f"خطأ في تحميل الملف: {e}")
+        print(f"❌ خطأ في تحميل الملف: {e}")
         return None, None
 
 
@@ -135,22 +162,32 @@ def pdf_to_images(pdf_bytes):
             with open(pdf_path, "wb") as f:
                 f.write(pdf_bytes)
 
+            print(f"📄 PDF saved: {len(pdf_bytes)} bytes")
+
             # استخدام pdftoppm لتحويل PDF لصور
             output_prefix = os.path.join(tmpdir, "page")
-            subprocess.run(
+            result = subprocess.run(
                 ["pdftoppm", "-jpeg", "-r", "150", pdf_path, output_prefix],
-                check=True,
-                capture_output=True
+                capture_output=True,
+                text=True
             )
+
+            print(f"📄 pdftoppm result: {result.returncode}")
+            if result.stderr:
+                print(f"📄 pdftoppm stderr: {result.stderr}")
 
             # قراءة الصور الناتجة
             for filename in sorted(os.listdir(tmpdir)):
                 if filename.startswith("page") and filename.endswith(".jpg"):
                     img_path = os.path.join(tmpdir, filename)
                     with open(img_path, "rb") as f:
-                        images.append(base64.b64encode(f.read()).decode('utf-8'))
+                        img_data = f.read()
+                        print(f"📸 Image: {filename}, size: {len(img_data)}")
+                        images.append(base64.b64encode(img_data).decode('utf-8'))
+
+            print(f"📸 Total images: {len(images)}")
     except Exception as e:
-        print(f"خطأ في تحويل PDF: {e}")
+        print(f"❌ خطأ في تحويل PDF: {e}")
     return images
 
 
@@ -185,6 +222,8 @@ def main():
                 if "photo" in message:
                     send_message(chat_id, "🔍 جاري قراءة الصورة...")
                     photo = message["photo"][-1]
+                    print(f"📸 Photo file_id: {photo['file_id'][:20]}...")
+
                     file_bytes, _ = download_file(photo["file_id"])
 
                     if file_bytes:
@@ -196,7 +235,7 @@ def main():
                             result = grok_vision(image_b64, "استخرج كل النص من هذه الصورة بدقة عالية. حافظ على التنسيق الأصلي.")
                         send_message(chat_id, result)
                     else:
-                        send_message(chat_id, "❌ ما قدرت أحمل الصورة")
+                        send_message(chat_id, "❌ ما قدرت أحمل الصورة. حاول مرة ثانية.")
                     continue
 
                 # معالجة الملفات (PDF والصور)
@@ -204,14 +243,24 @@ def main():
                     doc = message["document"]
                     file_name = doc.get("file_name", "").lower()
                     mime_type = doc.get("mime_type", "")
+                    file_size = doc.get("file_size", 0)
+
+                    print(f"📄 Document: {file_name}, mime: {mime_type}, size: {file_size}")
+
+                    # تحقق من الحجم (تيليجرام يحد بـ 20MB للبوتات)
+                    if file_size > 20 * 1024 * 1024:
+                        send_message(chat_id, "❌ الملف كبير جداً (أكثر من 20MB). حاول بملف أصغر.")
+                        continue
 
                     # PDF
                     if file_name.endswith(".pdf") or mime_type == "application/pdf":
-                        send_message(chat_id, "📄 جاري تحويل PDF...")
+                        send_message(chat_id, "📄 جاري تحميل PDF...")
                         file_bytes, _ = download_file(doc["file_id"])
 
                         if file_bytes:
+                            send_message(chat_id, "🔄 جاري تحويل PDF لصور...")
                             images = pdf_to_images(file_bytes)
+
                             if images:
                                 all_text = []
                                 for i, img_b64 in enumerate(images):
@@ -222,9 +271,9 @@ def main():
                                 result = "\n\n".join(all_text)
                                 send_message(chat_id, result)
                             else:
-                                send_message(chat_id, "❌ ما قدرت أحول الـ PDF. جرب ترسله كصور.")
+                                send_message(chat_id, "❌ ما قدرت أحول PDF. جرب ترسله كصور بدلاً من ملف.")
                         else:
-                            send_message(chat_id, "❌ ما قدرت أحمل الملف")
+                            send_message(chat_id, "❌ ما قدرت أحمل الملف. الملف قد يكون كبير أو فيه مشكلة.")
                         continue
 
                     # صور كملفات
@@ -252,7 +301,7 @@ def main():
             print("\n👋 تم إيقاف البوت")
             break
         except Exception as e:
-            print(f"خطأ عام: {e}")
+            print(f"❌ خطأ عام: {e}")
             time.sleep(5)
 
 
