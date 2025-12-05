@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المدخل المالي الرأسمالي</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        /* Main Capital Display */
+        .capital-display {
+            background: linear-gradient(145deg, #0f3460, #1a1a40);
+            border-radius: 20px;
+            padding: 50px 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .capital-label {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .capital-amount {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #4ade80;
+            margin-bottom: 10px;
+            direction: ltr;
+            display: inline-block;
+        }
+
+        .currency {
+            font-size: 1.5rem;
+            color: #94a3b8;
+            margin-right: 10px;
+        }
+
+        /* Input Form */
+        .input-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .input-section h2 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: #e2e8f0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #4ade80;
+            box-shadow: 0 0 20px rgba(74, 222, 128, 0.2);
+        }
+
+        .form-group input::placeholder {
+            color: #64748b;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(74, 222, 128, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: #fff;
+        }
+
+        .buttons-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        /* Transactions Table */
+        .transactions-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .transactions-section h2 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .transaction-count {
+            background: rgba(74, 222, 128, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #4ade80;
+        }
+
+        .transactions-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .transactions-table th {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            text-align: right;
+            color: #94a3b8;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .transactions-table td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #e2e8f0;
+        }
+
+        .transactions-table tr:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .amount-positive {
+            color: #4ade80;
+            font-weight: 600;
+        }
+
+        .amount-negative {
+            color: #f87171;
+            font-weight: 600;
+        }
+
+        .type-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .type-deposit {
+            background: rgba(74, 222, 128, 0.2);
+            color: #4ade80;
+        }
+
+        .type-withdraw {
+            background: rgba(248, 113, 113, 0.2);
+            color: #f87171;
+        }
+
+        .delete-btn {
+            background: none;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .delete-btn:hover {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .no-transactions {
+            text-align: center;
+            padding: 40px;
+            color: #64748b;
+        }
+
+        /* Summary Cards */
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .summary-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .summary-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .summary-card .label {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .summary-card .value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            direction: ltr;
+            display: inline-block;
+        }
+
+        .summary-card.deposits .value {
+            color: #4ade80;
+        }
+
+        .summary-card.withdrawals .value {
+            color: #f87171;
+        }
+
+        .summary-card.balance .value {
+            color: #60a5fa;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: #fff;
+                color: #000;
+            }
+            .input-section, .btn, .delete-btn {
+                display: none;
+            }
+            .capital-display, .summary-card, .transactions-section {
+                background: #f8f9fa;
+                border: 1px solid #ddd;
+            }
+            .capital-amount {
+                color: #22c55e;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .capital-amount {
+                font-size: 2.5rem;
+            }
+            .transactions-table {
+                font-size: 0.85rem;
+            }
+            .transactions-table th, .transactions-table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>المدخل المالي الرأسمالي</h1>
+            <p>تتبع رأس المال بشكل مهني وواضح</p>
+        </div>
+
+        <!-- Main Capital Display -->
+        <div class="capital-display">
+            <div class="capital-label">إجمالي رأس المال</div>
+            <div class="capital-amount" id="totalCapital">0.00</div>
+            <span class="currency">ر.س</span>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="summary-cards">
+            <div class="summary-card deposits">
+                <div class="label">إجمالي الإيداعات</div>
+                <div class="value" id="totalDeposits">0.00</div>
+            </div>
+            <div class="summary-card withdrawals">
+                <div class="label">إجمالي السحوبات</div>
+                <div class="value" id="totalWithdrawals">0.00</div>
+            </div>
+            <div class="summary-card balance">
+                <div class="label">عدد العمليات</div>
+                <div class="value" id="transactionCount">0</div>
+            </div>
+        </div>
+
+        <!-- Input Form -->
+        <div class="input-section">
+            <h2>إضافة عملية جديدة</h2>
+            <form id="transactionForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>نوع العملية</label>
+                        <select id="transactionType" required>
+                            <option value="deposit">إيداع (إضافة رأس مال)</option>
+                            <option value="withdraw">سحب (خصم من رأس المال)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>المبلغ (ر.س)</label>
+                        <input type="number" id="amount" placeholder="0.00" step="0.01" min="0" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>الوصف / البيان</label>
+                    <input type="text" id="description" placeholder="مثال: رأس مال تأسيسي، استثمار إضافي، سحب للمصروفات...">
+                </div>
+                <div class="form-group">
+                    <label>التاريخ</label>
+                    <input type="date" id="transactionDate" required>
+                </div>
+                <div class="buttons-row">
+                    <button type="submit" class="btn btn-primary">تسجيل العملية</button>
+                    <button type="button" class="btn btn-secondary" onclick="printReport()">طباعة التقرير</button>
+                    <button type="button" class="btn btn-secondary" onclick="exportData()">تصدير البيانات</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Transactions History -->
+        <div class="transactions-section">
+            <h2>
+                سجل العمليات
+                <span class="transaction-count" id="countBadge">0 عملية</span>
+            </h2>
+            <div id="transactionsContainer">
+                <table class="transactions-table" id="transactionsTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>التاريخ</th>
+                            <th>النوع</th>
+                            <th>الوصف</th>
+                            <th>المبلغ</th>
+                            <th>الرصيد</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionsBody">
+                    </tbody>
+                </table>
+                <div class="no-transactions" id="noTransactions">
+                    لا توجد عمليات مسجلة بعد
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize
+        let transactions = JSON.parse(localStorage.getItem('capitalTransactions')) || [];
+
+        // Set default date to today
+        document.getElementById('transactionDate').valueAsDate = new Date();
+
+        // Form submission
+        document.getElementById('transactionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const type = document.getElementById('transactionType').value;
+            const amount = parseFloat(document.getElementById('amount').value);
+            const description = document.getElementById('description').value || (type === 'deposit' ? 'إيداع' : 'سحب');
+            const date = document.getElementById('transactionDate').value;
+
+            const transaction = {
+                id: Date.now(),
+                type: type,
+                amount: amount,
+                description: description,
+                date: date,
+                createdAt: new Date().toISOString()
+            };
+
+            transactions.push(transaction);
+            saveTransactions();
+            renderTransactions();
+
+            // Reset form
+            document.getElementById('amount').value = '';
+            document.getElementById('description').value = '';
+            document.getElementById('transactionDate').valueAsDate = new Date();
+        });
+
+        function saveTransactions() {
+            localStorage.setItem('capitalTransactions', JSON.stringify(transactions));
+        }
+
+        function deleteTransaction(id) {
+            if (confirm('هل أنت متأكد من حذف هذه العملية؟')) {
+                transactions = transactions.filter(t => t.id !== id);
+                saveTransactions();
+                renderTransactions();
+            }
+        }
+
+        function formatNumber(num) {
+            return new Intl.NumberFormat('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(num);
+        }
+
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('ar-SA', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        function renderTransactions() {
+            const tbody = document.getElementById('transactionsBody');
+            const noTransactions = document.getElementById('noTransactions');
+            const table = document.getElementById('transactionsTable');
+
+            // Sort by date (newest first)
+            const sorted = [...transactions].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            // Calculate totals
+            let totalDeposits = 0;
+            let totalWithdrawals = 0;
+
+            transactions.forEach(t => {
+                if (t.type === 'deposit') {
+                    totalDeposits += t.amount;
+                } else {
+                    totalWithdrawals += t.amount;
+                }
+            });
+
+            const totalCapital = totalDeposits - totalWithdrawals;
+
+            // Update display
+            document.getElementById('totalCapital').textContent = formatNumber(totalCapital);
+            document.getElementById('totalDeposits').textContent = formatNumber(totalDeposits);
+            document.getElementById('totalWithdrawals').textContent = formatNumber(totalWithdrawals);
+            document.getElementById('transactionCount').textContent = transactions.length;
+            document.getElementById('countBadge').textContent = transactions.length + ' عملية';
+
+            // Change color based on balance
+            const capitalEl = document.getElementById('totalCapital');
+            capitalEl.style.color = totalCapital >= 0 ? '#4ade80' : '#f87171';
+
+            if (transactions.length === 0) {
+                table.style.display = 'none';
+                noTransactions.style.display = 'block';
+                return;
+            }
+
+            table.style.display = 'table';
+            noTransactions.style.display = 'none';
+
+            // Calculate running balance for display
+            let runningBalance = 0;
+            const withBalance = transactions
+                .sort((a, b) => new Date(a.date) - new Date(b.date))
+                .map(t => {
+                    if (t.type === 'deposit') {
+                        runningBalance += t.amount;
+                    } else {
+                        runningBalance -= t.amount;
+                    }
+                    return { ...t, balance: runningBalance };
+                })
+                .reverse();
+
+            tbody.innerHTML = withBalance.map((t, index) => `
+                <tr>
+                    <td>${withBalance.length - index}</td>
+                    <td>${formatDate(t.date)}</td>
+                    <td>
+                        <span class="type-badge ${t.type === 'deposit' ? 'type-deposit' : 'type-withdraw'}">
+                            ${t.type === 'deposit' ? 'إيداع' : 'سحب'}
+                        </span>
+                    </td>
+                    <td>${t.description}</td>
+                    <td class="${t.type === 'deposit' ? 'amount-positive' : 'amount-negative'}">
+                        ${t.type === 'deposit' ? '+' : '-'} ${formatNumber(t.amount)}
+                    </td>
+                    <td style="font-weight: 600; color: ${t.balance >= 0 ? '#4ade80' : '#f87171'}">
+                        ${formatNumber(t.balance)}
+                    </td>
+                    <td>
+                        <button class="delete-btn" onclick="deleteTransaction(${t.id})">حذف</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function printReport() {
+            window.print();
+        }
+
+        function exportData() {
+            const data = {
+                exportDate: new Date().toISOString(),
+                transactions: transactions,
+                summary: {
+                    totalDeposits: transactions.filter(t => t.type === 'deposit').reduce((sum, t) => sum + t.amount, 0),
+                    totalWithdrawals: transactions.filter(t => t.type === 'withdraw').reduce((sum, t) => sum + t.amount, 0),
+                    balance: transactions.reduce((sum, t) => t.type === 'deposit' ? sum + t.amount : sum - t.amount, 0)
+                }
+            };
+
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `capital-report-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Initial render
+        renderTransactions();
+    </script>
+</body>
+</html>
