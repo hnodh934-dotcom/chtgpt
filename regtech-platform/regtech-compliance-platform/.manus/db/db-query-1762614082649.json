@@ -1,0 +1,18 @@
+{
+  "query": "SELECT \n  (SELECT COUNT(*) FROM frameworks) as frameworks_count,\n  (SELECT COUNT(*) FROM controls) as controls_count,\n  (SELECT COUNT(*) FROM articles) as articles_count,\n  (SELECT COUNT(*) FROM blogPosts) as blog_posts_count,\n  (SELECT COUNT(*) FROM users) as users_count,\n  (SELECT COUNT(*) FROM organizations) as organizations_count;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2m1ctgqj5uashnj.root --database AS2yc6bjPtUHJmZyFBFARQ --execute SELECT \n  (SELECT COUNT(*) FROM frameworks) as frameworks_count,\n  (SELECT COUNT(*) FROM controls) as controls_count,\n  (SELECT COUNT(*) FROM articles) as articles_count,\n  (SELECT COUNT(*) FROM blogPosts) as blog_posts_count,\n  (SELECT COUNT(*) FROM users) as users_count,\n  (SELECT COUNT(*) FROM organizations) as organizations_count;",
+  "rows": [
+    {
+      "frameworks_count": "5",
+      "controls_count": "335",
+      "articles_count": "43",
+      "blog_posts_count": "5",
+      "users_count": "1",
+      "organizations_count": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "frameworks_count\tcontrols_count\tarticles_count\tblog_posts_count\tusers_count\torganizations_count\n5\t335\t43\t5\t1\t0\n",
+  "stderr": "",
+  "execution_time_ms": 1590
+}

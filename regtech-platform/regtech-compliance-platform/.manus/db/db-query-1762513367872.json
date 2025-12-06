@@ -1,0 +1,45 @@
+{
+  "query": "SELECT f.code, f.name, COUNT(c.id) as controls, f.priority, f.sector \nFROM frameworks f \nLEFT JOIN controls c ON f.id = c.frameworkId \nGROUP BY f.id \nORDER BY f.id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2m1ctgqj5uashnj.root --database AS2yc6bjPtUHJmZyFBFARQ --execute SELECT f.code, f.name, COUNT(c.id) as controls, f.priority, f.sector \nFROM frameworks f \nLEFT JOIN controls c ON f.id = c.frameworkId \nGROUP BY f.id \nORDER BY f.id;",
+  "rows": [
+    {
+      "code": "PDPL",
+      "name": "نظام حماية البيانات الشخصية",
+      "controls": "0",
+      "priority": "critical",
+      "sector": "عام"
+    },
+    {
+      "code": "ECC",
+      "name": "الضوابط الأساسية للأمن السيبراني",
+      "controls": "215",
+      "priority": "critical",
+      "sector": "تقني"
+    },
+    {
+      "code": "SAMA",
+      "name": "Saudi Central Bank Cybersecurity Framework",
+      "controls": "0",
+      "priority": "high",
+      "sector": "financial"
+    },
+    {
+      "code": "NCA",
+      "name": "National Cybersecurity Authority Essential Cybersecurity Controls",
+      "controls": "0",
+      "priority": "critical",
+      "sector": "all"
+    },
+    {
+      "code": "CITC",
+      "name": "Communications and Information Technology Commission Regulations",
+      "controls": "0",
+      "priority": "high",
+      "sector": "telecommunications"
+    }
+  ],
+  "messages": [],
+  "stdout": "code\tname\tcontrols\tpriority\tsector\nPDPL\tنظام حماية البيانات الشخصية\t0\tcritical\tعام\nECC\tالضوابط الأساسية للأمن السيبراني\t215\tcritical\tتقني\nSAMA\tSaudi Central Bank Cybersecurity Framework\t0\thigh\tfinancial\nNCA\tNational Cybersecurity Authority Essential Cybersecurity Controls\t0\tcritical\tall\nCITC\tCommunications and Information Technology Commission Regulations\t0\thigh\ttelecommunications\n",
+  "stderr": "",
+  "execution_time_ms": 1660
+}

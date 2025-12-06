@@ -1,0 +1,9 @@
+{
+  "query": "DELETE FROM edges; DELETE FROM provisions; DELETE FROM articles; DELETE FROM controls; DELETE FROM frameworks;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2m1ctgqj5uashnj.root --database AS2yc6bjPtUHJmZyFBFARQ --execute DELETE FROM edges; DELETE FROM provisions; DELETE FROM articles; DELETE FROM controls; DELETE FROM frameworks;",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 2594
+}

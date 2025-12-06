@@ -1,0 +1,35 @@
+{
+  "query": "SELECT f.code, f.name, COUNT(c.id) as control_count FROM frameworks f LEFT JOIN controls c ON f.id = c.frameworkId GROUP BY f.id ORDER BY f.id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2m1ctgqj5uashnj.root --database AS2yc6bjPtUHJmZyFBFARQ --execute SELECT f.code, f.name, COUNT(c.id) as control_count FROM frameworks f LEFT JOIN controls c ON f.id = c.frameworkId GROUP BY f.id ORDER BY f.id;",
+  "rows": [
+    {
+      "code": "PDPL",
+      "name": "نظام حماية البيانات الشخصية",
+      "control_count": "0"
+    },
+    {
+      "code": "ECC",
+      "name": "الضوابط الأساسية للأمن السيبراني",
+      "control_count": "215"
+    },
+    {
+      "code": "SAMA",
+      "name": "Saudi Central Bank Cybersecurity Framework",
+      "control_count": "0"
+    },
+    {
+      "code": "NCA",
+      "name": "National Cybersecurity Authority Essential Cybersecurity Controls",
+      "control_count": "0"
+    },
+    {
+      "code": "CITC",
+      "name": "Communications and Information Technology Commission Regulations",
+      "control_count": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "code\tname\tcontrol_count\nPDPL\tنظام حماية البيانات الشخصية\t0\nECC\tالضوابط الأساسية للأمن السيبراني\t215\nSAMA\tSaudi Central Bank Cybersecurity Framework\t0\nNCA\tNational Cybersecurity Authority Essential Cybersecurity Controls\t0\nCITC\tCommunications and Information Technology Commission Regulations\t0\n",
+  "stderr": "",
+  "execution_time_ms": 1540
+}

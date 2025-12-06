@@ -1,0 +1,257 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  /**
+   * 🏛️ الهوية البصرية الفاخرة - Premium Legal Identity
+   * 
+   * النظام اللوني:
+   * - الأخضر الليلي الغامق: يعكس الثقة والاستقرار القانوني
+   * - الذهبي الهادئ: يرمز للتميز والرفعة المهنية
+   * - الرملي الدافئ: للواجهات التشغيلية (راحة العين)
+   */
+  
+  /* الألوان الأساسية - Night Green & Gold */
+  --night-green-950: #0a1810;    /* أخضر ليلي عميق جداً */
+  --night-green-900: #0f2318;    /* أخضر ليلي عميق */
+  --night-green-800: #1a3525;    /* أخضر ليلي */
+  --night-green-700: #234832;    /* أخضر داكن */
+  --night-green-600: #2d5a3f;    /* أخضر متوسط */
+  
+  --gold-600: #b8860b;           /* ذهبي داكن */
+  --gold-500: #d4af37;           /* ذهبي كلاسيكي */
+  --gold-400: #e5c158;           /* ذهبي فاتح */
+  --gold-300: #f0d98c;           /* ذهبي هادئ */
+  
+  --sand-50: #faf8f3;            /* رملي فاتح جداً */
+  --sand-100: #f5f1e8;           /* رملي فاتح */
+  --sand-200: #ebe4d4;           /* رملي */
+  --sand-300: #d9cdb8;           /* رملي متوسط */
+  
+  /* الخلفية الرئيسية - أخضر ليلي غامق */
+  --background: #0f2318;         /* night-green-900 */
+  --foreground: #f0d98c;         /* gold-300 - نص ذهبي هادئ */
+  
+  /* البطاقات - أخضر ليلي أفتح قليلاً */
+  --card: #1a3525;               /* night-green-800 */
+  --card-foreground: #f0d98c;    /* gold-300 */
+  
+  /* القوائم المنبثقة */
+  --popover: #1a3525;            /* night-green-800 */
+  --popover-foreground: #f0d98c; /* gold-300 */
+  
+  /* اللون الأساسي - ذهبي */
+  --primary: #d4af37;            /* gold-500 */
+  --primary-foreground: #0a1810; /* night-green-950 - نص داكن على الذهبي */
+  
+  /* اللون الثانوي - ذهبي فاتح */
+  --secondary: #e5c158;          /* gold-400 */
+  --secondary-foreground: #0f2318; /* night-green-900 */
+  
+  /* الخلفيات المكتومة */
+  --muted: #234832;              /* night-green-700 */
+  --muted-foreground: #d9cdb8;   /* sand-300 */
+  
+  /* التمييز */
+  --accent: #d4af37;             /* gold-500 */
+  --accent-foreground: #0a1810;  /* night-green-950 */
+  
+  /* التحذير/التنبيه - برونزي داكن بدلاً من الأحمر */
+  --destructive: #8b6914;        /* bronze-700 - برونزي داكن */
+  --destructive-foreground: #fef9e7; /* warm-50 - دافئ فاتح */
+  
+  /* الحدود والإدخالات */
+  --border: #2d5a3f;             /* night-green-600 */
+  --input: #234832;              /* night-green-700 */
+  --ring: #d4af37;               /* gold-500 */
+  
+  /* الرسوم البيانية - ألوان فاخرة هادئة */
+  --chart-1: #d4af37;            /* gold-500 - ذهبي */
+  --chart-2: #2d7a5f;            /* emerald-700 - زمردي داكن */
+  --chart-3: #b8860b;            /* bronze-600 - برونزي */
+  --chart-4: #6d4c9f;            /* violet-700 - بنفسجي ملكي */
+  --chart-5: #8b6914;            /* bronze-700 - برونزي داكن */
+  
+  /* الشريط الجانبي */
+  --sidebar: #1a3525;            /* night-green-800 */
+  --sidebar-foreground: #f0d98c; /* gold-300 */
+  --sidebar-primary: #d4af37;    /* gold-500 */
+  --sidebar-primary-foreground: #0a1810; /* night-green-950 */
+  --sidebar-accent: #234832;     /* night-green-700 */
+  --sidebar-accent-foreground: #f0d98c; /* gold-300 */
+  --sidebar-border: #2d5a3f;     /* night-green-600 */
+  --sidebar-ring: #d4af37;       /* gold-500 */
+  
+  --radius: 0.5rem;
+}
+
+/* 🌅 الوضع الرملي - للواجهات التشغيلية */
+.sand-mode {
+  /* خلفية رملية دافئة */
+  --background: #faf8f3;         /* sand-50 */
+  --foreground: #1a3525;         /* night-green-800 */
+  
+  --card: #ffffff;
+  --card-foreground: #1a3525;
+  
+  --popover: #ffffff;
+  --popover-foreground: #1a3525;
+  
+  --primary: #b8860b;            /* gold-600 - ذهبي داكن للتباين */
+  --primary-foreground: #faf8f3;
+  
+  --secondary: #f5f1e8;          /* sand-100 */
+  --secondary-foreground: #1a3525;
+  
+  --muted: #ebe4d4;              /* sand-200 */
+  --muted-foreground: #234832;
+  
+  --accent: #b8860b;             /* gold-600 */
+  --accent-foreground: #faf8f3;
+  
+  --border: #d9cdb8;             /* sand-300 */
+  --input: #ebe4d4;              /* sand-200 */
+  --ring: #b8860b;               /* gold-600 */
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    /* خط قانوني احترافي */
+    font-family: 'IBM Plex Sans Arabic', 'Noto Sans Arabic', system-ui, -apple-system, sans-serif;
+  }
+
+  /* 📜 خطوط قانونية للنصوص الرسمية */
+  .legal-text {
+    font-family: 'Noto Serif Arabic', 'IBM Plex Sans Arabic', serif;
+    line-height: 1.8;
+    letter-spacing: 0.01em;
+  }
+
+  .legal-heading {
+    font-family: 'Noto Serif Arabic', 'IBM Plex Sans Arabic', serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  
+  /* ✨ تأثيرات بصرية راقية - فخامة هادئة */
+  .premium-card {
+    background: linear-gradient(135deg, var(--card) 0%, color-mix(in srgb, var(--card) 97%, var(--primary) 3%) 100%);
+    border: 1px solid color-mix(in srgb, var(--border) 85%, var(--primary) 15%);
+    box-shadow: 
+      0 2px 8px -2px rgb(0 0 0 / 0.4),
+      0 4px 16px -4px rgb(0 0 0 / 0.3),
+      inset 0 1px 0 0 color-mix(in srgb, var(--primary) 5%, transparent);
+  }
+  
+  .premium-card:hover {
+    border-color: color-mix(in srgb, var(--border) 70%, var(--primary) 30%);
+    box-shadow: 
+      0 4px 12px -2px rgb(0 0 0 / 0.5),
+      0 8px 24px -4px rgb(0 0 0 / 0.4),
+      inset 0 1px 0 0 color-mix(in srgb, var(--primary) 8%, transparent);
+    transform: translateY(-2px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .gold-glow {
+    text-shadow: 0 0 20px color-mix(in srgb, var(--primary) 30%, transparent);
+  }
+  
+  .night-gradient {
+    background: linear-gradient(180deg, 
+      var(--background) 0%, 
+      color-mix(in srgb, var(--background) 95%, var(--primary) 5%) 100%
+    );
+  }
+  
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  /**
+   * Custom container utility that centers content and adds responsive padding.
+   */
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+}

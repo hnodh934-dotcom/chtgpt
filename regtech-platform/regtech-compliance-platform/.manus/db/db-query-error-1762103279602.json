@@ -1,0 +1,8 @@
+{
+  "query": "ALTER TABLE audit_logs \nDROP COLUMN entityType,\nDROP COLUMN entityId,\nADD COLUMN organizationId INT AFTER userId,\nADD COLUMN resource VARCHAR(100) NOT NULL AFTER organizationId,\nADD COLUMN resourceId INT AFTER resource,\nMODIFY COLUMN action ENUM('create', 'read', 'update', 'delete') NOT NULL,\nADD COLUMN status ENUM('success', 'failure') NOT NULL DEFAULT 'success' AFTER userAgent,\nADD COLUMN errorMessage TEXT AFTER status,\nADD INDEX org_idx (organizationId),\nADD INDEX resource_idx (resource, resourceId),\nDROP INDEX entity_idx;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2m1ctgqj5uashnj.root --database AS2yc6bjPtUHJmZyFBFARQ --execute ALTER TABLE audit_logs \nDROP COLUMN entityType,\nDROP COLUMN entityId,\nADD COLUMN organizationId INT AFTER userId,\nADD COLUMN resource VARCHAR(100) NOT NULL AFTER organizationId,\nADD COLUMN resourceId INT AFTER resource,\nMODIFY COLUMN action ENUM('create', 'read', 'update', 'delete') NOT NULL,\nADD COLUMN status ENUM('success', 'failure') NOT NULL DEFAULT 'success' AFTER userAgent,\nADD COLUMN errorMessage TEXT AFTER status,\nADD INDEX org_idx (organizationId),\nADD INDEX resource_idx (resource, resourceId),\nDROP INDEX entity_idx;",
+  "returncode": 1,
+  "logs": [
+    "ERROR 8200 (HY000) at line 1: can't drop column entitytype with composite index covered or Primary Key covered now"
+  ]
+}
