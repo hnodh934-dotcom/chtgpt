@@ -1,0 +1,45 @@
+{
+  "query": "SELECT id, title, category, status, featured FROM blogPosts ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2m1ctgqj5uashnj.root --database AS2yc6bjPtUHJmZyFBFARQ --execute SELECT id, title, category, status, featured FROM blogPosts ORDER BY id;",
+  "rows": [
+    {
+      "id": "1",
+      "title": "دليل شامل للامتثال لمتطلبات مؤسسة النقد العربي السعودي (SAMA)",
+      "category": "regulatory",
+      "status": "published",
+      "featured": "1"
+    },
+    {
+      "id": "2",
+      "title": "الامتثال لضوابط الهيئة الوطنية للأمن السيبراني (NCA)",
+      "category": "regulatory",
+      "status": "published",
+      "featured": "1"
+    },
+    {
+      "id": "3",
+      "title": "متطلبات هيئة الاتصالات وتقنية المعلومات (CITC) للامتثال",
+      "category": "regulatory",
+      "status": "published",
+      "featured": "0"
+    },
+    {
+      "id": "4",
+      "title": "الامتثال لمتطلبات الهيئة العامة للغذاء والدواء (SFDA)",
+      "category": "regulatory",
+      "status": "published",
+      "featured": "0"
+    },
+    {
+      "id": "5",
+      "title": "اللائحة العامة لحماية البيانات (GDPR) والسوق السعودي",
+      "category": "guide",
+      "status": "published",
+      "featured": "1"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tcategory\tstatus\tfeatured\n1\tدليل شامل للامتثال لمتطلبات مؤسسة النقد العربي السعودي (SAMA)\tregulatory\tpublished\t1\n2\tالامتثال لضوابط الهيئة الوطنية للأمن السيبراني (NCA)\tregulatory\tpublished\t1\n3\tمتطلبات هيئة الاتصالات وتقنية المعلومات (CITC) للامتثال\tregulatory\tpublished\t0\n4\tالامتثال لمتطلبات الهيئة العامة للغذاء والدواء (SFDA)\tregulatory\tpublished\t0\n5\tاللائحة العامة لحماية البيانات (GDPR) والسوق السعودي\tguide\tpublished\t1\n",
+  "stderr": "",
+  "execution_time_ms": 1657
+}

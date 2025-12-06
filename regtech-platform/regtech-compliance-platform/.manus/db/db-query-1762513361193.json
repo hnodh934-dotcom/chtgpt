@@ -1,0 +1,30 @@
+{
+  "query": "SELECT \n  'Frameworks' as entity, COUNT(*) as count FROM frameworks\nUNION ALL\nSELECT 'Controls', COUNT(*) FROM controls\nUNION ALL\nSELECT 'Articles', COUNT(*) FROM articles\nUNION ALL\nSELECT 'Users', COUNT(*) FROM users\nUNION ALL\nSELECT 'Organizations', COUNT(*) FROM organizations;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2m1ctgqj5uashnj.root --database AS2yc6bjPtUHJmZyFBFARQ --execute SELECT \n  'Frameworks' as entity, COUNT(*) as count FROM frameworks\nUNION ALL\nSELECT 'Controls', COUNT(*) FROM controls\nUNION ALL\nSELECT 'Articles', COUNT(*) FROM articles\nUNION ALL\nSELECT 'Users', COUNT(*) FROM users\nUNION ALL\nSELECT 'Organizations', COUNT(*) FROM organizations;",
+  "rows": [
+    {
+      "entity": "Frameworks",
+      "count": "5"
+    },
+    {
+      "entity": "Users",
+      "count": "1"
+    },
+    {
+      "entity": "Articles",
+      "count": "43"
+    },
+    {
+      "entity": "Controls",
+      "count": "335"
+    },
+    {
+      "entity": "Organizations",
+      "count": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "entity\tcount\nFrameworks\t5\nUsers\t1\nArticles\t43\nControls\t335\nOrganizations\t0\n",
+  "stderr": "",
+  "execution_time_ms": 2937
+}

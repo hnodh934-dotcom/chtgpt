@@ -1,0 +1,9 @@
+{
+  "query": "DROP TABLE IF EXISTS audit_logs;\n\nCREATE TABLE audit_logs (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  userId INT,\n  organizationId INT,\n  resource VARCHAR(100) NOT NULL,\n  resourceId INT,\n  action ENUM('create', 'read', 'update', 'delete') NOT NULL,\n  changes TEXT,\n  ipAddress VARCHAR(45),\n  userAgent VARCHAR(500),\n  status ENUM('success', 'failure') NOT NULL DEFAULT 'success',\n  errorMessage TEXT,\n  createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  INDEX user_idx (userId),\n  INDEX org_idx (organizationId),\n  INDEX resource_idx (resource, resourceId),\n  INDEX action_idx (action),\n  INDEX created_at_idx (createdAt)\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2m1ctgqj5uashnj.root --database AS2yc6bjPtUHJmZyFBFARQ --execute DROP TABLE IF EXISTS audit_logs;\n\nCREATE TABLE audit_logs (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  userId INT,\n  organizationId INT,\n  resource VARCHAR(100) NOT NULL,\n  resourceId INT,\n  action ENUM('create', 'read', 'update', 'delete') NOT NULL,\n  changes TEXT,\n  ipAddress VARCHAR(45),\n  userAgent VARCHAR(500),\n  status ENUM('success', 'failure') NOT NULL DEFAULT 'success',\n  errorMessage TEXT,\n  createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  INDEX user_idx (userId),\n  INDEX org_idx (organizationId),\n  INDEX resource_idx (resource, resourceId),\n  INDEX action_idx (action),\n  INDEX created_at_idx (createdAt)\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 2103
+}

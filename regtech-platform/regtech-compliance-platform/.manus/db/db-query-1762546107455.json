@@ -1,0 +1,199 @@
+{
+  "query": "SELECT \n  TABLE_NAME, \n  TABLE_ROWS, \n  DATA_LENGTH, \n  INDEX_LENGTH,\n  (DATA_LENGTH + INDEX_LENGTH) as TOTAL_SIZE\nFROM information_schema.TABLES \nWHERE TABLE_SCHEMA = DATABASE()\nORDER BY TOTAL_SIZE DESC;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2m1ctgqj5uashnj.root --database AS2yc6bjPtUHJmZyFBFARQ --execute SELECT \n  TABLE_NAME, \n  TABLE_ROWS, \n  DATA_LENGTH, \n  INDEX_LENGTH,\n  (DATA_LENGTH + INDEX_LENGTH) as TOTAL_SIZE\nFROM information_schema.TABLES \nWHERE TABLE_SCHEMA = DATABASE()\nORDER BY TOTAL_SIZE DESC;",
+  "rows": [
+    {
+      "TABLE_NAME": "controls",
+      "TABLE_ROWS": "335",
+      "DATA_LENGTH": "137843",
+      "INDEX_LENGTH": "52798",
+      "TOTAL_SIZE": "190641"
+    },
+    {
+      "TABLE_NAME": "articles",
+      "TABLE_ROWS": "43",
+      "DATA_LENGTH": "57839",
+      "INDEX_LENGTH": "1720",
+      "TOTAL_SIZE": "59559"
+    },
+    {
+      "TABLE_NAME": "packages",
+      "TABLE_ROWS": "3",
+      "DATA_LENGTH": "2328",
+      "INDEX_LENGTH": "76",
+      "TOTAL_SIZE": "2404"
+    },
+    {
+      "TABLE_NAME": "frameworks",
+      "TABLE_ROWS": "5",
+      "DATA_LENGTH": "2136",
+      "INDEX_LENGTH": "135",
+      "TOTAL_SIZE": "2271"
+    },
+    {
+      "TABLE_NAME": "permissions",
+      "TABLE_ROWS": "19",
+      "DATA_LENGTH": "942",
+      "INDEX_LENGTH": "820",
+      "TOTAL_SIZE": "1762"
+    },
+    {
+      "TABLE_NAME": "roles",
+      "TABLE_ROWS": "9",
+      "DATA_LENGTH": "1312",
+      "INDEX_LENGTH": "181",
+      "TOTAL_SIZE": "1493"
+    },
+    {
+      "TABLE_NAME": "projects",
+      "TABLE_ROWS": "1",
+      "DATA_LENGTH": "192",
+      "INDEX_LENGTH": "24",
+      "TOTAL_SIZE": "216"
+    },
+    {
+      "TABLE_NAME": "users",
+      "TABLE_ROWS": "1",
+      "DATA_LENGTH": "140",
+      "INDEX_LENGTH": "66",
+      "TOTAL_SIZE": "206"
+    },
+    {
+      "TABLE_NAME": "edges",
+      "TABLE_ROWS": "2",
+      "DATA_LENGTH": "112",
+      "INDEX_LENGTH": "80",
+      "TOTAL_SIZE": "192"
+    },
+    {
+      "TABLE_NAME": "__drizzle_migrations",
+      "TABLE_ROWS": "2",
+      "DATA_LENGTH": "164",
+      "INDEX_LENGTH": "16",
+      "TOTAL_SIZE": "180"
+    },
+    {
+      "TABLE_NAME": "provisions",
+      "TABLE_ROWS": "0",
+      "DATA_LENGTH": "0",
+      "INDEX_LENGTH": "0",
+      "TOTAL_SIZE": "0"
+    },
+    {
+      "TABLE_NAME": "subscriptions",
+      "TABLE_ROWS": "0",
+      "DATA_LENGTH": "0",
+      "INDEX_LENGTH": "0",
+      "TOTAL_SIZE": "0"
+    },
+    {
+      "TABLE_NAME": "reports",
+      "TABLE_ROWS": "0",
+      "DATA_LENGTH": "0",
+      "INDEX_LENGTH": "0",
+      "TOTAL_SIZE": "0"
+    },
+    {
+      "TABLE_NAME": "notifications",
+      "TABLE_ROWS": "0",
+      "DATA_LENGTH": "0",
+      "INDEX_LENGTH": "0",
+      "TOTAL_SIZE": "0"
+    },
+    {
+      "TABLE_NAME": "evidence",
+      "TABLE_ROWS": "0",
+      "DATA_LENGTH": "0",
+      "INDEX_LENGTH": "0",
+      "TOTAL_SIZE": "0"
+    },
+    {
+      "TABLE_NAME": "control_assessments",
+      "TABLE_ROWS": "0",
+      "DATA_LENGTH": "0",
+      "INDEX_LENGTH": "0",
+      "TOTAL_SIZE": "0"
+    },
+    {
+      "TABLE_NAME": "assessments",
+      "TABLE_ROWS": "0",
+      "DATA_LENGTH": "0",
+      "INDEX_LENGTH": "0",
+      "TOTAL_SIZE": "0"
+    },
+    {
+      "TABLE_NAME": "tasks",
+      "TABLE_ROWS": "0",
+      "DATA_LENGTH": "0",
+      "INDEX_LENGTH": "0",
+      "TOTAL_SIZE": "0"
+    },
+    {
+      "TABLE_NAME": "organizations",
+      "TABLE_ROWS": "0",
+      "DATA_LENGTH": "0",
+      "INDEX_LENGTH": "0",
+      "TOTAL_SIZE": "0"
+    },
+    {
+      "TABLE_NAME": "risks",
+      "TABLE_ROWS": "0",
+      "DATA_LENGTH": "0",
+      "INDEX_LENGTH": "0",
+      "TOTAL_SIZE": "0"
+    },
+    {
+      "TABLE_NAME": "invoices",
+      "TABLE_ROWS": "0",
+      "DATA_LENGTH": "0",
+      "INDEX_LENGTH": "0",
+      "TOTAL_SIZE": "0"
+    },
+    {
+      "TABLE_NAME": "payments",
+      "TABLE_ROWS": "0",
+      "DATA_LENGTH": "0",
+      "INDEX_LENGTH": "0",
+      "TOTAL_SIZE": "0"
+    },
+    {
+      "TABLE_NAME": "meetings",
+      "TABLE_ROWS": "0",
+      "DATA_LENGTH": "0",
+      "INDEX_LENGTH": "0",
+      "TOTAL_SIZE": "0"
+    },
+    {
+      "TABLE_NAME": "support_tickets",
+      "TABLE_ROWS": "0",
+      "DATA_LENGTH": "0",
+      "INDEX_LENGTH": "0",
+      "TOTAL_SIZE": "0"
+    },
+    {
+      "TABLE_NAME": "support_replies",
+      "TABLE_ROWS": "0",
+      "DATA_LENGTH": "0",
+      "INDEX_LENGTH": "0",
+      "TOTAL_SIZE": "0"
+    },
+    {
+      "TABLE_NAME": "leads",
+      "TABLE_ROWS": "0",
+      "DATA_LENGTH": "0",
+      "INDEX_LENGTH": "0",
+      "TOTAL_SIZE": "0"
+    },
+    {
+      "TABLE_NAME": "audit_logs",
+      "TABLE_ROWS": "0",
+      "DATA_LENGTH": "0",
+      "INDEX_LENGTH": "0",
+      "TOTAL_SIZE": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "TABLE_NAME\tTABLE_ROWS\tDATA_LENGTH\tINDEX_LENGTH\tTOTAL_SIZE\ncontrols\t335\t137843\t52798\t190641\narticles\t43\t57839\t1720\t59559\npackages\t3\t2328\t76\t2404\nframeworks\t5\t2136\t135\t2271\npermissions\t19\t942\t820\t1762\nroles\t9\t1312\t181\t1493\nprojects\t1\t192\t24\t216\nusers\t1\t140\t66\t206\nedges\t2\t112\t80\t192\n__drizzle_migrations\t2\t164\t16\t180\nprovisions\t0\t0\t0\t0\nsubscriptions\t0\t0\t0\t0\nreports\t0\t0\t0\t0\nnotifications\t0\t0\t0\t0\nevidence\t0\t0\t0\t0\ncontrol_assessments\t0\t0\t0\t0\nassessments\t0\t0\t0\t0\ntasks\t0\t0\t0\t0\norganizations\t0\t0\t0\t0\nrisks\t0\t0\t0\t0\ninvoices\t0\t0\t0\t0\npayments\t0\t0\t0\t0\nmeetings\t0\t0\t0\t0\nsupport_tickets\t0\t0\t0\t0\nsupport_replies\t0\t0\t0\t0\nleads\t0\t0\t0\t0\naudit_logs\t0\t0\t0\t0\n",
+  "stderr": "",
+  "execution_time_ms": 2780
+}
