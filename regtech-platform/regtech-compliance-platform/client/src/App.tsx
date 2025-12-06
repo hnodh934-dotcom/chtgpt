@@ -95,8 +95,13 @@ function Router() {
       <Route path="/frameworks" component={Frameworks} />
       <Route path="/frameworks/:id" component={FrameworkDetails} />
       <Route path="/map" component={Map} />
-      <Route path="/preview" component={PreviewPage} />
-      <Route path="/test" component={TestLayeredMap} />
+      {/* Dev-only routes - hidden in production */}
+      {process.env.NODE_ENV === 'development' && (
+        <>
+          <Route path="/preview" component={PreviewPage} />
+          <Route path="/test" component={TestLayeredMap} />
+        </>
+      )}
       <Route path="/controls/:id" component={ControlDetailsPage} />
       <Route path="/articles/:id" component={ArticleDetailsPage} />
       <Route path="/provisions/:id" component={ProvisionDetailsPage} />
@@ -117,7 +122,7 @@ function Router() {
       <Route path="/customer-journey" component={CustomerJourney} />
       <Route path="/assessment" component={ComplianceAssessment} />
       <Route path="/reports" component={Reports} />
-      <Route path="/onboarding" component={Onboarding} />
+      <Route path="/onboarding-full" component={Onboarding} />
       <Route path="/monitor" component={MonitorDashboard} />
       <Route path="/legal-disclaimers" component={LegalDisclaimers} />
       <Route path="/terms-of-service" component={TermsOfService} />
@@ -132,12 +137,12 @@ function Router() {
       <Route path="/case-studies" component={CaseStudies} />
       <Route path="/data-export" component={DataExport} />
       <Route path="/api-documentation" component={ApiDocumentation} />
-      <Route path="/contact" component={Contact} />
+      {/* Removed duplicate /contact - already defined above */}
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/faq" component={FAQ} />
       <Route path="/500" component={Error500} />
-      <Route path="/404" component={NotFound} />
+      {/* Removed duplicate /404 - already defined above */}
       <Route path="/aml" component={AMLManagement} />
       <Route path="/kyc" component={KYCManagement} />
       <Route path="/compliance-reports" component={ComplianceReports} />
