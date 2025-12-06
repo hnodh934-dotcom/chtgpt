@@ -69,6 +69,7 @@ const Pricing = lazy(() => import("./pages/Pricing"));
 const AMLManagement = lazy(() => import("./pages/AMLManagement"));
 const KYCManagement = lazy(() => import("./pages/KYCManagement"));
 const ComplianceReports = lazy(() => import("./pages/ComplianceReports"));
+const Settings = lazy(() => import("./pages/Settings"));
 
 // Loading component
 const PageLoader = () => (
@@ -131,6 +132,7 @@ function Router() {
       <Route path="/master-service-agreement" component={MasterServiceAgreement} />
       <Route path="/pricing" component={Pricing} />
       <Route path="/support" component={Support} />
+      <Route path="/settings" component={Settings} />
       <Route path="/content-update" component={ContentUpdate} />
       <Route path="/backup-system" component={BackupSystem} />
       <Route path="/about-us" component={AboutUs} />
